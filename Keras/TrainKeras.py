@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from tensorflow import keras
 from tensorflow.keras import layers
 
-data = pd.read_csv('C:/Users/user/source/repos/WEDM-ver6/WEDM-ver6/FeatureData.csv')
+data = pd.read_csv('C:/Users/user/source/repos/WEDM-ver7/WEDM-ver7/FeatureData.csv')
 data.shape
 data.dtypes
 
@@ -51,8 +51,8 @@ model.summary()
 model.compile(optimizer=tf.keras.optimizers.Adam(), loss=keras.losses.MeanSquaredError(), metrics=[keras.metrics.MeanAbsoluteError()])
 
 
-model_dir = 'C:/Users/user/source/repos/WEDM-ver6/WEDM-ver6/temp/'
-log_dir = os.path.join('C:/Users/user/source/repos/WEDM-ver6/WEDM-ver6/temp/', 'Sequential')
+model_dir = 'C:/Users/user/source/repos/WEDM-ver7/WEDM-ver7/temp/'
+log_dir = os.path.join('C:/Users/user/source/repos/WEDM-ver7/WEDM-ver7/temp/', 'Sequential')
 os.makedirs(model_dir)
 
 model_cbk = keras.callbacks.TensorBoard(log_dir=log_dir)
@@ -64,7 +64,7 @@ history = model.fit(x_train, y_train, batch_size=60, epochs=4000, validation_dat
 
 # 存檔
 model_json = model.to_json()
-with open("C:/Users/user/source/repos/WEDM-ver6/WEDM-ver6/temp/model.json", "w") as json_file:
+with open("C:/Users/user/source/repos/WEDM-ver7/WEDM-ver7/temp/model.json", "w") as json_file:
     json_file.write(model_json)
 
 
@@ -85,7 +85,7 @@ plt.xlabel('epochs')
 plt.legend(loc='upper right')
 
 
-model = keras.models.load_model('C:/Users/user/source/repos/WEDM-ver6/WEDM-ver6/temp/Best-model.h5')
+model = keras.models.load_model('C:/Users/user/source/repos/WEDM-ver7/WEDM-ver7/temp/Best-model.h5')
 y_test = np.array(test_data['drum_error'])
 test_data = (test_data - mean) / std
 x_test = np.array(test_data.drop('drum_error', axis='columns'))
