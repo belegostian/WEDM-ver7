@@ -80,8 +80,8 @@ namespace WEDM_ver7
 
 
             //AI PART
-            var module_folder = @"C:\Users\user\source\repos\WEDM-ver6\Keras";
-            var module_name = "RunKeras";
+            var module_folder = @"C:\Users\user\source\repos\WEDM-ver7\Keras";
+            var module_name = "Keras";
             var class_name = "LoanModel";
             var def_name = "predict_this";
 

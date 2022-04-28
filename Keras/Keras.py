@@ -18,10 +18,10 @@ class LoanModel:
     #load model itself and additional tools
     def __init__(self):
         self.__model = None
-        with open('C:/Users/user/source/repos/WEDM-ver6/WEDM-ver6/temp/model.json', 'r') as json_file:
+        with open('C:/Users/user/source/repos/WEDM-ver7/WEDM-ver7/temp/model.json', 'r') as json_file:
             loaded_model_json = json_file.read()
             self.__model = model_from_json(loaded_model_json)
-            self.__model.load_weights("C:/Users/user/source/repos/WEDM-ver6/WEDM-ver6/temp/Best-model.h5")
+            self.__model.load_weights("C:/Users/user/source/repos/WEDM-ver7/WEDM-ver7/temp/Best-model.h5")
             self.__model.compile(optimizer=tf.keras.optimizers.Adam(), loss=keras.losses.MeanSquaredError(), metrics=[keras.metrics.MeanAbsoluteError()])
 
     def predict_this(self, json_arguments):
