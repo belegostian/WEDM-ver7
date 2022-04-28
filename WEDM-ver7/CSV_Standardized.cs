@@ -31,6 +31,12 @@ namespace WEDM_ver7
         public double[] train_y { get; private set; }
         public double[,] test_x { get; private set; }
         public double[] test_y { get; private set; }
+        public double[] averange_x { get; private set; }
+        public double averange_y { get; private set; }
+        public double[] deviation_x { get; private set; }
+        public double deviation_y { get; private set; }
+
+
 
         static double standardDeviation(IEnumerable<double> sequence)
         {
@@ -45,9 +51,9 @@ namespace WEDM_ver7
             return result;
         }
 
-        void calculate()
+        public void calculate()
         {
-            //Load train data
+            //資料讀取
             double[,] data_x = new double[162, 23];
             double[] data_y = new double[162];
 
@@ -73,7 +79,6 @@ namespace WEDM_ver7
                 }
             }
 
-
             // 翻轉陣列
             double[,] tmp_x = new double[23, 162];
 
@@ -84,6 +89,9 @@ namespace WEDM_ver7
                     tmp_x[i, j] = data_x[j, i];
                 }
             }
+
+
+
 
             // 平均
             double[] avg_x = new double[23];
@@ -105,6 +113,9 @@ namespace WEDM_ver7
                 std_x[i] = standardDeviation(customarray.GetRow(tmp_x, i));
             }
             std_y = standardDeviation(data_y);
+
+
+
 
             // 標準化
             for (int j = 0; j < 162; j++)
@@ -139,6 +150,12 @@ namespace WEDM_ver7
                 valid_y[i - 130] = data_y[i];
             }
 
+
+            // 傳值
+            averange_x = avg_x;
+            averange_y = avg_y;
+            deviation_x = std_x;
+            deviation_y = std_y;
             train_x = x;
             train_y = y;
             test_x = valid_x;

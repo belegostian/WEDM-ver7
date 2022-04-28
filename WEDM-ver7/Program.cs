@@ -87,8 +87,9 @@ namespace WEDM_ver7
 
             //Model input arguments preparation
             var methodArguments = new PythonCallerArgs();
+            CSV_Standardized std = new CSV_Standardized();
 
-            methodArguments.AddArg("OV", 16);
+            methodArguments.AddArg("OV", 16 - std.averange_x[0] / std.deviation_x[0]);
             methodArguments.AddArg("Ton", 13);
             methodArguments.AddArg("Toff", 10);
             methodArguments.AddArg("Aon", 8);
