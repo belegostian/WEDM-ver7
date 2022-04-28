@@ -8,6 +8,8 @@ namespace WEDM_ver7
     {
         static void Main(string[] args)
         {
+            // SQL DB PART
+
             // 計時器
             Stopwatch stopWatch = new Stopwatch();
 
