@@ -57,7 +57,7 @@ namespace WEDM_ver7
             double[,] data_x = new double[162, 23];
             double[] data_y = new double[162];
 
-            using (var reader = new StreamReader(@"C:\Users\user\Source\Repos\DataProcessingVersion2\ModelTraining\FeatureData.csv"))
+            using (var reader = new StreamReader(@"C:\Users\user\source\repos\WEDM-ver7\WEDM-ver7\FeatureData.csv"))
             {
                 for (int i = 0; !reader.EndOfStream; i++)
                 {
@@ -70,11 +70,11 @@ namespace WEDM_ver7
                     }
                     else
                     {
-                        for (int j = 0; j < values.Count() - 2; j++)
+                        for (int j = 0; j < values.Count() - 1; j++)
                         {
                             data_x[i - 1, j] = double.Parse(values[j], CultureInfo.InvariantCulture.NumberFormat);
                         }
-                        data_y[i - 1] = double.Parse(values[24], CultureInfo.InvariantCulture.NumberFormat);
+                        data_y[i - 1] = double.Parse(values[23], CultureInfo.InvariantCulture.NumberFormat);
                     }
                 }
             }

@@ -88,30 +88,31 @@ namespace WEDM_ver7
             //Model input arguments preparation
             var methodArguments = new PythonCallerArgs();
             CSV_Standardized std = new CSV_Standardized();
+            std.calculate();
 
-            methodArguments.AddArg("OV", 16 - std.averange_x[0] / std.deviation_x[0]);
-            methodArguments.AddArg("Ton", 13);
-            methodArguments.AddArg("Toff", 10);
-            methodArguments.AddArg("Aon", 8);
-            methodArguments.AddArg("Aoff", 8);
-            methodArguments.AddArg("SV", 38);
-            methodArguments.AddArg("WT", 8);
-            methodArguments.AddArg("WF", 7);
-            methodArguments.AddArg("WA", 8);
-            methodArguments.AddArg("F", 8);
-            methodArguments.AddArg("SG", 6);
-            methodArguments.AddArg("A", 7);
-            methodArguments.AddArg("T", 40);
-            methodArguments.AddArg("Gap_Voltage_average", gap_volt_avg);
-            methodArguments.AddArg("T_on", ton);
-            methodArguments.AddArg("Normal_discharge_interval", normal_execute);
-            methodArguments.AddArg("Abnormal_discharge_interval", abnormal_execute);
-            methodArguments.AddArg("Execute", execute_count);
-            methodArguments.AddArg("Ratio", abnormal_ratio);
-            methodArguments.AddArg("Energy_average", energy_avg);
-            methodArguments.AddArg("Small_current", cur_size_count[2]);
-            methodArguments.AddArg("Middle_current", cur_size_count[1]);
-            methodArguments.AddArg("Big_current", cur_size_count[0]);
+            methodArguments.AddArg("OV", ((16 - std.averange_x[0]) / std.deviation_x[0]));
+            methodArguments.AddArg("Ton", ((13 - std.averange_x[1]) / std.deviation_x[1]));
+            methodArguments.AddArg("Toff", ((10 - std.averange_x[2]) / std.deviation_x[2]));
+            methodArguments.AddArg("Aon", ((8 - std.averange_x[3]) / std.deviation_x[3]));
+            methodArguments.AddArg("Aoff", ((8 - std.averange_x[4]) / std.deviation_x[4]));
+            methodArguments.AddArg("SV", ((38 - std.averange_x[5]) / std.deviation_x[5]));
+            methodArguments.AddArg("WT", ((8 - std.averange_x[6]) / std.deviation_x[6]));
+            methodArguments.AddArg("WF", ((7 - std.averange_x[7]) / std.deviation_x[7]));
+            methodArguments.AddArg("WA", ((8 - std.averange_x[8]) / std.deviation_x[8]));
+            methodArguments.AddArg("F", ((8 - std.averange_x[9]) / std.deviation_x[9]));
+            methodArguments.AddArg("SG", ((6 - std.averange_x[10]) / std.deviation_x[10]));
+            methodArguments.AddArg("A", ((7 - std.averange_x[11]) / std.deviation_x[11]));
+            methodArguments.AddArg("T", ((40 - std.averange_x[12]) / std.deviation_x[12]));
+            methodArguments.AddArg("Gap_Voltage_average", ((gap_volt_avg - std.averange_x[13]) / std.deviation_x[13]));
+            methodArguments.AddArg("T_on", ((ton - std.averange_x[14]) / std.deviation_x[14]));
+            methodArguments.AddArg("Normal_discharge_interval", ((normal_execute - std.averange_x[15]) / std.deviation_x[15]));
+            methodArguments.AddArg("Abnormal_discharge_interval", ((abnormal_execute - std.averange_x[16]) / std.deviation_x[16]));
+            methodArguments.AddArg("Execute", ((execute_count - std.averange_x[17]) / std.deviation_x[17]));
+            methodArguments.AddArg("Ratio", ((abnormal_ratio - std.averange_x[18]) / std.deviation_x[18]));
+            methodArguments.AddArg("Energy_average", ((energy_avg - std.averange_x[19]) / std.deviation_x[19]));
+            methodArguments.AddArg("Small_current", ((cur_size_count[2] - std.averange_x[20]) / std.deviation_x[20]));
+            methodArguments.AddArg("Middle_current", ((cur_size_count[1] - std.averange_x[21]) / std.deviation_x[21]));
+            methodArguments.AddArg("Big_current", ((cur_size_count[0] - std.averange_x[22]) / std.deviation_x[22]));
 
             methodArguments.AddMetaArg("caller", "WindowsToPythonAI");
 
@@ -124,8 +125,8 @@ namespace WEDM_ver7
             TimeSpan ts = stopWatch.Elapsed;
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
-
-            Console.WriteLine("prediction = : {0} ;", resultJson["prediction"]);
+            Console.WriteLine();
+            Console.WriteLine("prediction = : {0} ;", ((Convert.ToDouble(resultJson["prediction"].Substring(2, resultJson["prediction"].Length - 4)) * std.deviation_y) + std.averange_y));
             Console.WriteLine("Run Time = : {0} ;", elapsedTime);
         }
     }
