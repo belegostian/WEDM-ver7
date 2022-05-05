@@ -27,10 +27,6 @@ namespace WEDM_ver7
 
     class CSV_Standardized
     {
-        public double[,] train_x { get; private set; }
-        public double[] train_y { get; private set; }
-        public double[,] test_x { get; private set; }
-        public double[] test_y { get; private set; }
         public double[] averange_x { get; private set; }
         public double averange_y { get; private set; }
         public double[] deviation_x { get; private set; }
@@ -156,10 +152,6 @@ namespace WEDM_ver7
             averange_y = avg_y;
             deviation_x = std_x;
             deviation_y = std_y;
-            train_x = x;
-            train_y = y;
-            test_x = valid_x;
-            test_y = valid_y;
         }
     }
 }
